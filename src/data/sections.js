@@ -1,0 +1,16 @@
+export const SECTION_IDS = [
+  'hero',
+  'opportunity',
+  'problem',
+  'five-problems',
+  'regulated-zones',
+  'trust-anchors',
+  'identity-keepers',
+  'contract-certifiers',
+  'transaction-monitors',
+  'transaction-filters',
+  'privacy',
+  'example-trade',
+  'regulatory-concerns',
+  'why-it-matters',
+]
