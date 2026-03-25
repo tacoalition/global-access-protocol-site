@@ -2,6 +2,8 @@ import { useScrollObserver } from './hooks/useScrollObserver'
 import { SECTION_IDS } from './data/sections'
 import { HEADER, SECTIONS } from './data/content'
 import VisualPanel from './components/VisualPanel'
+import StickyNav from './components/StickyNav'
+import Footer from './components/Footer'
 
 import HeroVisual from './components/visuals/HeroVisual'
 import MarketGap from './components/visuals/MarketGap'
@@ -157,6 +159,8 @@ function App() {
   return (
     <div className="min-h-screen bg-bg text-text">
 
+      <StickyNav />
+
       {/* ===== HERO HEADER ===== */}
       <header className="max-w-4xl mx-auto px-6 pt-16 md:pt-24 min-h-screen flex flex-col">
         <div className="font-sans text-xs font-semibold text-accent uppercase tracking-[0.2em] mb-4">
@@ -230,6 +234,8 @@ function App() {
         </aside>
 
       </div>
+
+      <Footer />
     </div>
   )
 }
