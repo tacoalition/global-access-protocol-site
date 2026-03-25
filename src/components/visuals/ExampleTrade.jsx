@@ -2,7 +2,7 @@ const steps = [
   { label: 'Onboarding', desc: 'Complete KYC with Identity Keeper', icon: '1', color: 'accent' },
   { label: 'Access', desc: 'Wallet discovers required credentials', icon: '2', color: 'accent' },
   { label: 'Execute', desc: 'ZK proof verifies compliance', icon: '3', color: 'green' },
-  { label: 'Settle', desc: 'Trade settles on-chain, self-custody', icon: '4', color: 'green' },
+  { label: 'Settle', desc: 'Trade settles onchain, self-custody', icon: '4', color: 'green' },
   { label: 'Monitor', desc: 'Ongoing surveillance, PII stays private', icon: '5', color: 'amber' },
 ]
 

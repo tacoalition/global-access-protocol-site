@@ -53,7 +53,7 @@ export default function ContractCertifiers({ active }) {
         style={{ opacity: active ? 1 : 0, transitionDelay: '600ms' }}
       >
         <div className="font-sans text-xs font-semibold text-green-light">Classification Credential</div>
-        <div className="font-sans text-[10px] text-text-muted mt-1">Contract class, sponsor, and compliance status readable on-chain</div>
+        <div className="font-sans text-[10px] text-text-muted mt-1">Contract class, sponsor, and compliance status readable onchain</div>
       </div>
     </div>
   )

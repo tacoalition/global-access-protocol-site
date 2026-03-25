@@ -63,7 +63,7 @@ export default function IdentityKeepers({ active }) {
             style={{ opacity: active ? 1 : 0, transitionDelay: '700ms' }}
           >
             <div className="font-sans text-xs font-semibold text-green-light">Verifiable Credential Issued</div>
-            <div className="font-sans text-[10px] text-text-muted">Linked to DID, no PII on-chain</div>
+            <div className="font-sans text-[10px] text-text-muted">Linked to DID, no PII onchain</div>
           </div>
         </div>
       </div>

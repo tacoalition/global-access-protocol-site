@@ -34,7 +34,7 @@ export default function WhyItMatters({ active }) {
         style={{ opacity: active ? 1 : 0, transitionDelay: '800ms' }}
       >
         <div className="font-serif text-lg font-semibold text-accent-light mb-2">
-          Trillions in securities, finally on-chain.
+          Trillions in securities, finally onchain.
         </div>
         <div className="font-sans text-xs text-text-muted">
           The Global Access Protocol is the bridge.

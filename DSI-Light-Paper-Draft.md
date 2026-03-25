@@ -1,8 +1,8 @@
 # Compliant DeFi: A Model Regulatory Framework for Tokenized Securities on Permissionless Blockchains
 
-**The Digital Securities Initiative**
+**The Digital Securities Initiative & The Tokenized Asset Coalition**
 
-*A light paper*
+*A lite paper*
 
 ---
 
@@ -18,7 +18,7 @@ We believe both of these systems should exist, and that they should coexist. The
 
 Yet today, the onchain tokenized asset market sits at roughly $25 billion against a total global securities market exceeding $250 trillion. The gap is enormous, and it represents an equally enormous opportunity. For the intermediated system, tokenization offers significant cost savings in settlement, clearing, and record-keeping. But the more interesting opportunity lies on the other side: enabling entirely new products and a fundamentally better experience for users who want to custody their own assets, access global liquidity, and transact privately.
 
-This light paper focuses on the latter: the disintermediated financial system, where the greatest innovation is possible and where the need for a new regulatory approach is most acute. What follows is a framework for making it work.
+This lite paper focuses on the latter: the disintermediated financial system, where the greatest innovation is possible and where the need for a new regulatory approach is most acute. What follows is a framework for making it work.
 
 ---
 
@@ -48,7 +48,7 @@ Current tokenization efforts fail to address these problems comprehensively. The
 
 ## The Solution: Regulated Zones
 
-The Digital Securities Initiative (DSI) proposes a fundamentally different approach. Rather than choosing between compliance and decentralization, DSI's Model Regulatory Framework embeds compliance directly into the smart contract layer of permissionless blockchains, using an open-source protocol called the **Global Access Protocol (GAP)**.
+The Digital Securities Initiative (DSI) and the Tokenized Asset Coalition (TAC) propose a fundamentally different approach. Rather than choosing between compliance and decentralization, the Model Regulatory Framework embeds compliance directly into the smart contract layer of permissionless blockchains, using an open-source protocol called the **Global Access Protocol (GAP)**.
 
 The core concept is the **Regulated Zone**, a chain-agnostic compliance perimeter for tokenized securities. A Regulated Zone is not a separate blockchain. It operates on top of existing permissionless networks like Ethereum or Solana. It is a collection of smart contracts that have all agreed to enforce the same set of rules, under the administration of a common governance body.
 
@@ -72,7 +72,7 @@ The Model Regulatory Framework consists of both technology and people. GAP provi
 
 ### Trust Anchors: Setting the Rules
 
-Every Regulated Zone needs an administrator, an entity responsible for setting compliance standards, approving and auditing service providers, and enforcing rules. This administrator bridges the gap between rules that can be enforced by code and rules that require human input. DSI calls this role the **Trust Anchor**.
+Every Regulated Zone needs an administrator, an entity responsible for setting compliance standards, approving and auditing service providers, and enforcing rules. This administrator bridges the gap between rules that can be enforced by code and rules that require human input. We call this role the **Trust Anchor**.
 
 Each Trust Anchor administers its own Regulated Zone. It publishes the standards that service providers must follow, conducts periodic audits to enforce those standards, and maintains the Terms of Service that bind all participants. All other market participants freely choose which Regulated Zones to participate in, and transactions can involve assets across multiple zones.
 
@@ -98,7 +98,7 @@ Contract Certifiers issue **Classification Credentials** for certified contracts
 
 Smart contracts are classified under standards called **Classification Regimes**, which define **Contract Classes**, categories with specific compliance requirements. For example, a Tokenized Securities Classification Regime might define classes for Reg D offerings, decentralized exchanges, lending protocols, and general DeFi applications, each with different requirements around transaction monitoring, investor eligibility checks, and registration obligations.
 
-Contract Certifiers register with **Contract Trust Anchors** who adopt Classification Regimes and set rules of conduct. Because Classification Trust Anchors are completely permissionless (anyone can deploy their own), different Regulated Zones can emerge for different jurisdictions and asset classes, each with their own interpretation of regulatory requirements.
+Contract Certifiers register with **Contract Trust Anchors** who adopt Classification Regimes and set rules of conduct. Because Contract Trust Anchors are completely permissionless (anyone can deploy their own), different Regulated Zones can emerge for different jurisdictions and asset classes, each with their own interpretation of regulatory requirements.
 
 ### Transaction Monitors: Watching for Bad Behavior
 
@@ -182,4 +182,4 @@ This is how tokenization reaches its full potential and trillions in securities 
 
 ---
 
-*The Global Access Protocol is currently being developed by the Digital Securities Initiative. For a full technical specification, see the [GAP White Paper]. For the complete regulatory model, see [A Model Regulatory Framework for Tokenized Securities on Permissionless Blockchains].*
+*The Global Access Protocol is currently being developed by the Digital Securities Initiative and the Tokenized Asset Coalition. For a full technical specification, see the [GAP White Paper]. For the complete regulatory model, see [A Model Regulatory Framework for Tokenized Securities on Permissionless Blockchains].*

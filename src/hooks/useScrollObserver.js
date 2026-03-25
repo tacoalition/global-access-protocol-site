@@ -9,25 +9,28 @@ export function useScrollObserver(sectionIds) {
   }
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.dataset.section)
-          }
-        })
-      },
-      {
-        rootMargin: '-40% 0px -40% 0px',
-        threshold: 0,
+    // Trigger when the section heading reaches roughly the middle of the
+    // viewport, but clamp so the trigger line is never above the sticky
+    // panel top (6rem / 96px).
+    const STICKY_TOP = 96
+
+    const onScroll = () => {
+      const triggerLine = Math.max(STICKY_TOP, window.innerHeight * 0.3)
+      let current = null
+      for (const id of sectionIds) {
+        const el = sectionRefs.current[id]
+        if (!el) continue
+        const rect = el.getBoundingClientRect()
+        if (rect.top <= triggerLine && rect.bottom > STICKY_TOP + 100) {
+          current = id
+        }
       }
-    )
+      setActiveSection(current)
+    }
 
-    Object.values(sectionRefs.current).forEach((el) => {
-      if (el) observer.observe(el)
-    })
-
-    return () => observer.disconnect()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
   }, [sectionIds])
 
   return { activeSection, registerRef }
