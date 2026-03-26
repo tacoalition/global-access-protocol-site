@@ -198,7 +198,7 @@ function App() {
           </div>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
             <a href="https://digitalsecuritiesinitiative.xyz" target="_blank" rel="noopener noreferrer">
-              <img src="/DSI Logo w: Dark background.png" alt="Digital Securities Initiative" className="h-[36px]" />
+              <img src="/DSI logo transparent dark mode.png" alt="Digital Securities Initiative" className="h-[36px]" />
             </a>
             <span className="text-border font-sans">&times;</span>
             <a href="https://tacoalition.org" target="_blank" rel="noopener noreferrer">
