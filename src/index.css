@@ -36,6 +36,12 @@ body {
 }
 
 ::selection {
-  background-color: var(--color-accent-bg);
-  color: var(--color-accent-light);
+  background-color: rgba(245, 158, 11, 0.3);
+  color: var(--color-text);
+}
+
+article p,
+article h2,
+article strong {
+  cursor: url('/cursor-highlighter.svg') 2 22, text;
 }

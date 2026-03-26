@@ -1,9 +1,13 @@
+import { useState } from 'react'
 import { useScrollObserver } from './hooks/useScrollObserver'
 import { SECTION_IDS } from './data/sections'
 import { HEADER, SECTIONS } from './data/content'
 import VisualPanel from './components/VisualPanel'
 import StickyNav from './components/StickyNav'
 import Footer from './components/Footer'
+import HighlightComment from './components/HighlightComment'
+import FloatingCTA from './components/FloatingCTA'
+import DriveAccessModal from './components/DriveAccessModal'
 
 import HeroVisual from './components/visuals/HeroVisual'
 import MarketGap from './components/visuals/MarketGap'
@@ -117,6 +121,14 @@ function ContentSection({ id, registerRef, mobileVisual }) {
 }
 
 function App() {
+  const [showDriveModal, setShowDriveModal] = useState(false)
+  const [formCompleted, setFormCompleted] = useState(() => localStorage.getItem('gap_form_completed') === 'true')
+
+  const handleFormSubmit = () => {
+    localStorage.setItem('gap_form_completed', 'true')
+    setFormCompleted(true)
+    setShowDriveModal(true)
+  }
   const { activeSection, registerRef } = useScrollObserver(SECTION_IDS)
 
   const visualComponents = {
@@ -162,7 +174,7 @@ function App() {
       <StickyNav />
 
       {/* ===== HERO HEADER ===== */}
-      <header className="max-w-4xl mx-auto px-6 pt-16 md:pt-24 min-h-screen flex flex-col">
+      <header className="max-w-4xl mx-auto px-6 pt-28 md:pt-36 min-h-screen flex flex-col">
         <div className="font-sans text-xs font-semibold text-accent uppercase tracking-[0.2em] mb-4">
           {HEADER.label}
         </div>
@@ -236,6 +248,9 @@ function App() {
       </div>
 
       <Footer />
+      <HighlightComment onFormSubmit={handleFormSubmit} formCompleted={formCompleted} />
+      <FloatingCTA onFormSubmit={handleFormSubmit} formCompleted={formCompleted} />
+      <DriveAccessModal open={showDriveModal} onClose={() => setShowDriveModal(false)} />
     </div>
   )
 }
