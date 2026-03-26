@@ -25,7 +25,7 @@ export default function Footer() {
                 className="h-[47px] lg:h-[60px] w-auto"
               />
             </a>
-            <p className="text-xs lg:text-sm leading-[19px] tracking-[-0.28px] opacity-50 max-w-[334px] lg:max-w-[478px]">
+            <p className="font-sans text-xs lg:text-sm leading-[19px] tracking-[-0.28px] opacity-50 max-w-[334px] lg:max-w-[478px]">
               2026 &copy; Tokenized Asset Coalition, Inc. is a member funded non profit corporation
             </p>
           </div>
