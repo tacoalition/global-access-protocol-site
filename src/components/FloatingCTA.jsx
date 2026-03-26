@@ -42,7 +42,10 @@ export default function FloatingCTA({ openTypeform, formCompleted }) {
   }
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-md border-t border-border transition-opacity duration-300">
+    <div
+      className="fixed inset-x-0 z-50 bg-surface/90 backdrop-blur-md border-t border-border transition-opacity duration-300"
+      style={{ bottom: 'env(safe-area-inset-bottom, 0px)' }}
+    >
       {/* Progress bar */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-border/20">
         <div
