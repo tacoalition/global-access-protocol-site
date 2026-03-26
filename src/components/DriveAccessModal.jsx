@@ -17,7 +17,7 @@ export default function DriveAccessModal({ open, onClose }) {
           Access the full research materials
         </h3>
         <p className="text-sm text-text-muted mb-6 leading-relaxed">
-          We've prepared the complete GAP technical specification, the Model Regulatory Framework, and supporting materials for your review.
+          Review and comment on the White Paper, Model Regulatory Framework and Lite Paper.
         </p>
 
         <div className="flex gap-3">
