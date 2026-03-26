@@ -1,12 +1,29 @@
+import { useEffect } from 'react'
+
 const DRIVE_FOLDER_URL = 'https://drive.google.com/drive/u/0/folders/1mgUdy_I3XZij8PHvlx7TEDpIGYCxi-fu'
 
 export default function DriveAccessModal({ open, onClose }) {
+  useEffect(() => {
+    if (!open) {
+      // Clean up any leftover overflow:hidden from Typeform
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [open])
+
   if (!open) return null
+
+  const handleClose = () => {
+    document.body.style.overflow = ''
+    onClose()
+  }
 
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-bg/80 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-bg/80 backdrop-blur-sm" onClick={handleClose} />
 
       {/* Modal */}
       <div className="relative bg-surface border border-border rounded-2xl p-8 max-w-md w-full shadow-2xl">
@@ -25,13 +42,13 @@ export default function DriveAccessModal({ open, onClose }) {
             href={DRIVE_FOLDER_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={onClose}
+            onClick={handleClose}
             className="flex-1 font-sans text-sm font-semibold text-bg bg-accent-light hover:bg-accent px-4 py-3 rounded-lg transition-colors text-center no-underline"
           >
             View Materials
           </a>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="font-sans text-sm text-text-muted hover:text-text px-4 py-3 rounded-lg transition-colors cursor-pointer bg-transparent border border-border"
           >
             Maybe Later
