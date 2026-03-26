@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { createPopup } from '@typeform/embed'
+import typeformEmbed from '@typeform/embed'
 
 const TYPEFORM_ID = 'uWyIXRTX'
 const DRIVE_FOLDER_URL = 'https://drive.google.com/drive/u/0/folders/1mgUdy_I3XZij8PHvlx7TEDpIGYCxi-fu'
@@ -36,7 +36,7 @@ export default function FloatingCTA({ onFormSubmit, formCompleted }) {
       window.open(DRIVE_FOLDER_URL, '_blank')
       return
     }
-    const { open } = createPopup(TYPEFORM_ID, {
+    const { open } = typeformEmbed.createPopup(TYPEFORM_ID, {
       onSubmit: () => onFormSubmit?.(),
     })
     open()

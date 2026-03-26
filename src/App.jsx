@@ -8,7 +8,7 @@ import Footer from './components/Footer'
 import HighlightComment from './components/HighlightComment'
 import FloatingCTA from './components/FloatingCTA'
 import DriveAccessModal from './components/DriveAccessModal'
-import { createPopup } from '@typeform/embed'
+import typeformEmbed from '@typeform/embed'
 
 import HeroVisual from './components/visuals/HeroVisual'
 import MarketGap from './components/visuals/MarketGap'
@@ -207,7 +207,7 @@ function App() {
           ) : (
             <button
               onClick={() => {
-                const { open } = createPopup('uWyIXRTX', { onSubmit: () => handleFormSubmit() })
+                const { open } = typeformEmbed.createPopup('uWyIXRTX', { onSubmit: () => handleFormSubmit() })
                 open()
               }}
               className="font-sans text-xs font-semibold text-bg bg-accent-light hover:bg-accent px-4 py-2 rounded-lg transition-colors cursor-pointer border-none"

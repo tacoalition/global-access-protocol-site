@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { createPopup } from '@typeform/embed'
+import typeformEmbed from '@typeform/embed'
 
 const TYPEFORM_ID = 'uWyIXRTX'
 const DRIVE_FOLDER_URL = 'https://drive.google.com/drive/u/0/folders/1mgUdy_I3XZij8PHvlx7TEDpIGYCxi-fu'
@@ -62,7 +62,7 @@ export default function HighlightComment({ onFormSubmit, formCompleted }) {
       return
     }
 
-    const { open } = createPopup(TYPEFORM_ID, {
+    const { open } = typeformEmbed.createPopup(TYPEFORM_ID, {
       hidden: {
         highlighted_text: selection.text.slice(0, 500),
         page_section: selection.sectionId,
