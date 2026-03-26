@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import HighlightComment from './components/HighlightComment'
 import FloatingCTA from './components/FloatingCTA'
 import DriveAccessModal from './components/DriveAccessModal'
+import { createPopup } from '@typeform/embed'
 
 import HeroVisual from './components/visuals/HeroVisual'
 import MarketGap from './components/visuals/MarketGap'
@@ -185,8 +186,35 @@ function App() {
           {HEADER.subtitle}
         </p>
 
-        <div className="font-sans text-sm mb-8">
+        <div className="font-sans text-sm mb-4">
           <div className="text-text-muted text-xs">{HEADER.type}</div>
+        </div>
+
+        <p className="font-sans text-sm text-text-muted max-w-lg leading-relaxed mb-5">
+          This is a summary of the Global Access Protocol. To access the full white paper, regulatory model, and get involved:
+        </p>
+
+        <div className="mb-8">
+          {formCompleted ? (
+            <a
+              href="https://drive.google.com/drive/u/0/folders/1mgUdy_I3XZij8PHvlx7TEDpIGYCxi-fu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-sans text-xs font-semibold text-bg bg-accent-light hover:bg-accent px-4 py-2 rounded-lg transition-colors no-underline"
+            >
+              View Materials
+            </a>
+          ) : (
+            <button
+              onClick={() => {
+                const { open } = createPopup('uWyIXRTX', { onSubmit: () => handleFormSubmit() })
+                open()
+              }}
+              className="font-sans text-xs font-semibold text-bg bg-accent-light hover:bg-accent px-4 py-2 rounded-lg transition-colors cursor-pointer border-none"
+            >
+              Learn More
+            </button>
+          )}
         </div>
 
         <div className="flex-[2]" />
