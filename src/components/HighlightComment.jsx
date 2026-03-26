@@ -1,12 +1,12 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
-import { PopupButton } from '@typeform/embed-react'
+import { useState, useEffect, useCallback } from 'react'
+import { createPopup } from '@typeform/embed'
 
 const TYPEFORM_ID = 'uWyIXRTX'
 const DRIVE_FOLDER_URL = 'https://drive.google.com/drive/u/0/folders/1mgUdy_I3XZij8PHvlx7TEDpIGYCxi-fu'
 
 export default function HighlightComment({ onFormSubmit, formCompleted }) {
   const [selection, setSelection] = useState(null)
-  const tooltipRef = useRef(null)
+  const [tooltipEl, setTooltipEl] = useState(null)
 
   const handleMouseUp = useCallback(() => {
     setTimeout(() => {
@@ -41,10 +41,10 @@ export default function HighlightComment({ onFormSubmit, formCompleted }) {
   }, [])
 
   const handleMouseDown = useCallback((e) => {
-    if (tooltipRef.current && !tooltipRef.current.contains(e.target)) {
+    if (tooltipEl && !tooltipEl.contains(e.target)) {
       setSelection(null)
     }
-  }, [])
+  }, [tooltipEl])
 
   useEffect(() => {
     document.addEventListener('mouseup', handleMouseUp)
@@ -55,11 +55,32 @@ export default function HighlightComment({ onFormSubmit, formCompleted }) {
     }
   }, [handleMouseUp, handleMouseDown])
 
+  const handleClick = () => {
+    if (formCompleted) {
+      window.open(DRIVE_FOLDER_URL, '_blank')
+      setSelection(null)
+      return
+    }
+
+    const { open } = createPopup(TYPEFORM_ID, {
+      hidden: {
+        highlighted_text: selection.text.slice(0, 500),
+        page_section: selection.sectionId,
+      },
+      onSubmit: () => {
+        onFormSubmit?.()
+        setSelection(null)
+      },
+      onClose: () => setSelection(null),
+    })
+    open()
+  }
+
   if (!selection) return null
 
   return (
     <div
-      ref={tooltipRef}
+      ref={setTooltipEl}
       className="fixed z-[100] -translate-x-1/2 -translate-y-full"
       style={{
         top: selection.top - 12,
@@ -70,33 +91,12 @@ export default function HighlightComment({ onFormSubmit, formCompleted }) {
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#9CA3AF" strokeWidth="1.5">
           <path d="M1 3.5h12M1 7h8M1 10.5h10" />
         </svg>
-        {formCompleted ? (
-          <a
-            href={DRIVE_FOLDER_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setTimeout(() => setSelection(null), 100)}
-            className="font-sans text-xs font-medium text-accent-light hover:text-accent cursor-pointer no-underline"
-          >
-            View materials
-          </a>
-        ) : (
-          <PopupButton
-            id={TYPEFORM_ID}
-            hidden={{
-              highlighted_text: selection.text.slice(0, 500),
-              page_section: selection.sectionId,
-            }}
-            onSubmit={() => {
-              onFormSubmit?.()
-              setSelection(null)
-            }}
-            onClose={() => setSelection(null)}
-            className="font-sans text-xs font-medium text-accent-light hover:text-accent cursor-pointer bg-transparent border-none p-0"
-          >
-            Leave a comment
-          </PopupButton>
-        )}
+        <button
+          onClick={handleClick}
+          className="font-sans text-xs font-medium text-accent-light hover:text-accent cursor-pointer bg-transparent border-none p-0"
+        >
+          {formCompleted ? 'View materials' : 'Leave a comment'}
+        </button>
       </div>
       <div className="flex justify-center">
         <div className="w-2 h-2 bg-surface border-r border-b border-border rotate-45 -mt-1" />
