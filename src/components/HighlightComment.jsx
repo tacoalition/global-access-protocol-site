@@ -1,10 +1,8 @@
 import { useState, useEffect, useCallback } from 'react'
-import { createPopup } from '../utils/typeform'
 
-const TYPEFORM_ID = 'uWyIXRTX'
 const DRIVE_FOLDER_URL = 'https://drive.google.com/drive/u/0/folders/1mgUdy_I3XZij8PHvlx7TEDpIGYCxi-fu'
 
-export default function HighlightComment({ onFormSubmit, formCompleted }) {
+export default function HighlightComment({ openTypeform, formCompleted }) {
   const [selection, setSelection] = useState(null)
   const [tooltipEl, setTooltipEl] = useState(null)
 
@@ -59,21 +57,13 @@ export default function HighlightComment({ onFormSubmit, formCompleted }) {
     if (formCompleted) {
       window.open(DRIVE_FOLDER_URL, '_blank')
       setSelection(null)
-      return
-    }
-
-    const { open } = createPopup(TYPEFORM_ID, {
-      hidden: {
+    } else {
+      openTypeform({
         highlighted_text: selection.text.slice(0, 500),
         page_section: selection.sectionId,
-      },
-      onSubmit: () => {
-        onFormSubmit?.()
-        setSelection(null)
-      },
-      onClose: () => setSelection(null),
-    })
-    open()
+      })
+      setSelection(null)
+    }
   }
 
   if (!selection) return null

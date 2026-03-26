@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react'
-import { createPopup } from '../utils/typeform'
 
-const TYPEFORM_ID = 'uWyIXRTX'
 const DRIVE_FOLDER_URL = 'https://drive.google.com/drive/u/0/folders/1mgUdy_I3XZij8PHvlx7TEDpIGYCxi-fu'
 
-export default function FloatingCTA({ onFormSubmit, formCompleted }) {
+export default function FloatingCTA({ openTypeform, formCompleted }) {
   const [pastHero, setPastHero] = useState(false)
   const [atFooter, setAtFooter] = useState(false)
 
@@ -34,12 +32,9 @@ export default function FloatingCTA({ onFormSubmit, formCompleted }) {
   const handleClick = () => {
     if (formCompleted) {
       window.open(DRIVE_FOLDER_URL, '_blank')
-      return
+    } else {
+      openTypeform()
     }
-    const { open } = createPopup(TYPEFORM_ID, {
-      onSubmit: () => onFormSubmit?.(),
-    })
-    open()
   }
 
   return (
