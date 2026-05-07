@@ -40,6 +40,15 @@ body {
   color: var(--color-text);
 }
 
+/* TAC display weight: 469 sits between regular and medium on the
+   Instrument Sans variable-weight axis, giving headings/emphasis a
+   softer look than the default 700. */
+h1, h2, h3, h4, h5, h6,
+strong, b,
+.font-bold, .font-semibold {
+  font-weight: 469;
+}
+
 article p,
 article h2,
 article strong {
