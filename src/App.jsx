@@ -124,10 +124,10 @@ function ContentSection({ id, registerRef, mobileVisual }) {
 function App() {
   const [showDriveModal, setShowDriveModal] = useState(false)
   const [showSubscribe, setShowSubscribe] = useState(false)
-  const [formCompleted, setFormCompleted] = useState(() => localStorage.getItem('gap_form_completed') === 'true')
+  const [formCompleted, setFormCompleted] = useState(() => localStorage.getItem('gap_subscribed') === 'true')
 
   const handleFormSubmit = () => {
-    localStorage.setItem('gap_form_completed', 'true')
+    localStorage.setItem('gap_subscribed', 'true')
     setFormCompleted(true)
     setShowSubscribe(false)
     setShowDriveModal(true)
