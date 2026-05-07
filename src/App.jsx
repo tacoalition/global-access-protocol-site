@@ -8,7 +8,7 @@ import Footer from './components/Footer'
 import HighlightComment from './components/HighlightComment'
 import FloatingCTA from './components/FloatingCTA'
 import DriveAccessModal from './components/DriveAccessModal'
-import TypeformModal from './components/TypeformModal'
+import SubscribeModal from './components/SubscribeModal'
 
 import HeroVisual from './components/visuals/HeroVisual'
 import MarketGap from './components/visuals/MarketGap'
@@ -123,20 +123,18 @@ function ContentSection({ id, registerRef, mobileVisual }) {
 
 function App() {
   const [showDriveModal, setShowDriveModal] = useState(false)
-  const [showTypeform, setShowTypeform] = useState(false)
-  const [typeformHidden, setTypeformHidden] = useState({})
+  const [showSubscribe, setShowSubscribe] = useState(false)
   const [formCompleted, setFormCompleted] = useState(() => localStorage.getItem('gap_form_completed') === 'true')
 
   const handleFormSubmit = () => {
     localStorage.setItem('gap_form_completed', 'true')
     setFormCompleted(true)
-    setShowTypeform(false)
+    setShowSubscribe(false)
     setShowDriveModal(true)
   }
 
-  const openTypeform = (hiddenFields = {}) => {
-    setTypeformHidden(hiddenFields)
-    setShowTypeform(true)
+  const openSubscribe = () => {
+    setShowSubscribe(true)
   }
   const { activeSection, registerRef } = useScrollObserver(SECTION_IDS)
 
@@ -214,7 +212,7 @@ function App() {
             </a>
           ) : (
             <button
-              onClick={() => openTypeform()}
+              onClick={openSubscribe}
               className="font-sans text-xs font-semibold text-bg bg-accent-light hover:bg-accent px-4 py-2 rounded-lg transition-colors cursor-pointer border-none"
             >
               Learn More
@@ -287,13 +285,12 @@ function App() {
       </div>
 
       <Footer />
-      <HighlightComment openTypeform={openTypeform} formCompleted={formCompleted} />
-      <FloatingCTA openTypeform={openTypeform} formCompleted={formCompleted} />
-      <TypeformModal
-        open={showTypeform}
-        onClose={() => setShowTypeform(false)}
+      <HighlightComment openSubscribe={openSubscribe} formCompleted={formCompleted} />
+      <FloatingCTA openSubscribe={openSubscribe} formCompleted={formCompleted} />
+      <SubscribeModal
+        open={showSubscribe}
+        onClose={() => setShowSubscribe(false)}
         onSubmit={handleFormSubmit}
-        hiddenFields={typeformHidden}
       />
       <DriveAccessModal open={showDriveModal} onClose={() => setShowDriveModal(false)} />
     </div>

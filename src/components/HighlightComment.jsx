@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 
 const DRIVE_FOLDER_URL = 'https://drive.google.com/drive/u/0/folders/1mgUdy_I3XZij8PHvlx7TEDpIGYCxi-fu'
 
-export default function HighlightComment({ openTypeform, formCompleted }) {
+export default function HighlightComment({ openSubscribe, formCompleted }) {
   const [selection, setSelection] = useState(null)
   const [tooltipEl, setTooltipEl] = useState(null)
 
@@ -56,14 +56,10 @@ export default function HighlightComment({ openTypeform, formCompleted }) {
   const handleClick = () => {
     if (formCompleted) {
       window.open(DRIVE_FOLDER_URL, '_blank')
-      setSelection(null)
     } else {
-      openTypeform({
-        highlighted_text: selection.text.slice(0, 500),
-        page_section: selection.sectionId,
-      })
-      setSelection(null)
+      openSubscribe()
     }
+    setSelection(null)
   }
 
   if (!selection) return null
@@ -85,7 +81,7 @@ export default function HighlightComment({ openTypeform, formCompleted }) {
           onClick={handleClick}
           className="font-sans text-xs font-medium text-accent-light hover:text-accent cursor-pointer bg-transparent border-none p-0"
         >
-          {formCompleted ? 'View materials' : 'Leave a comment'}
+          {formCompleted ? 'View materials' : 'Get access'}
         </button>
       </div>
       <div className="flex justify-center">

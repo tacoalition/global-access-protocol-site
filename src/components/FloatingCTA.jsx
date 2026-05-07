@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 const DRIVE_FOLDER_URL = 'https://drive.google.com/drive/u/0/folders/1mgUdy_I3XZij8PHvlx7TEDpIGYCxi-fu'
 
-export default function FloatingCTA({ openTypeform, formCompleted }) {
+export default function FloatingCTA({ openSubscribe, formCompleted }) {
   const [pastHero, setPastHero] = useState(false)
   const [atFooter, setAtFooter] = useState(false)
   const [progress, setProgress] = useState(0)
@@ -37,7 +37,7 @@ export default function FloatingCTA({ openTypeform, formCompleted }) {
     if (formCompleted) {
       window.open(DRIVE_FOLDER_URL, '_blank')
     } else {
-      openTypeform()
+      openSubscribe()
     }
   }
 
