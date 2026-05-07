@@ -5,19 +5,19 @@
   --color-bg-light: #111827;
   --color-text: #E5E7EB;
   --color-text-muted: #9CA3AF;
-  --color-accent: #3B82F6;
-  --color-accent-light: #60A5FA;
-  --color-accent-bg: rgba(59, 130, 246, 0.1);
+  --color-accent: #22c47a;
+  --color-accent-light: #64feab;
+  --color-accent-bg: rgba(100, 254, 171, 0.1);
   --color-surface: #1F2937;
   --color-border: #374151;
-  --color-green: #10B981;
-  --color-green-light: #34D399;
+  --color-green: #64feab;
+  --color-green-light: #86ffc0;
   --color-amber: #F59E0B;
   --color-red: #EF4444;
 
-  --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
+  --font-sans: 'Instrument Sans', system-ui, -apple-system, sans-serif;
 }
 
 html {
@@ -26,7 +26,7 @@ html {
 
 body {
   margin: 0;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   background-color: var(--color-bg);
   color: var(--color-text);
   font-size: 18px;
@@ -36,7 +36,7 @@ body {
 }
 
 ::selection {
-  background-color: rgba(245, 158, 11, 0.3);
+  background-color: rgba(100, 254, 171, 0.3);
   color: var(--color-text);
 }
 
