@@ -27,6 +27,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Please enter your organization." });
   }
 
+  // Primary action: Ghost subscription. Failure surfaces to the user.
   try {
     await subscribeToGhost(email, fullName);
   } catch (err) {
@@ -35,7 +36,10 @@ export default async function handler(req, res) {
     return res.status(502).json({ error: message });
   }
 
-  addToAttioGapList({ email, fullName, organization }).catch((err) => {
+  // Secondary action: Attio. Awaited so the call completes before the
+  // serverless function exits (Vercel kills the runtime as soon as we
+  // return). Failures are logged but stay silent — Ghost already succeeded.
+  await addToAttioGapList({ email, fullName, organization }).catch((err) => {
     console.error("Attio GAP list write failed:", err);
   });
 
@@ -88,15 +92,13 @@ async function addToAttioGapList({ email, fullName, organization }) {
     return;
   }
 
-  const personId = await findOrCreatePerson(apiKey, {
-    email,
-    fullName,
-    organization,
-  });
+  const personId = await findOrCreatePerson(apiKey, { email, fullName });
   if (!personId) {
     throw new Error("Could not resolve Attio Person record");
   }
 
+  // organization is a list-specific custom field on the GAP Signups
+  // list (not a Person attribute), so it goes in entry_values.
   const entryRes = await fetch(
     `${ATTIO_BASE}/lists/${ATTIO_GAP_LIST_ID}/entries`,
     {
@@ -109,7 +111,9 @@ async function addToAttioGapList({ email, fullName, organization }) {
         data: {
           parent_record_id: personId,
           parent_object: "people",
-          entry_values: {},
+          entry_values: organization
+            ? { organization: [{ value: organization }] }
+            : {},
         },
       }),
     }
@@ -130,7 +134,7 @@ function splitName(full) {
   return { first_name: parts[0], last_name: parts.slice(1).join(" ") };
 }
 
-async function findOrCreatePerson(apiKey, { email, fullName, organization }) {
+async function findOrCreatePerson(apiKey, { email, fullName }) {
   const { first_name, last_name } = splitName(fullName);
 
   const queryRes = await fetch(`${ATTIO_BASE}/objects/people/records/query`, {
@@ -150,16 +154,14 @@ async function findOrCreatePerson(apiKey, { email, fullName, organization }) {
     const existing = data.data?.[0];
     const existingId = existing?.id?.record_id;
     if (existingId) {
+      // Patch only blank fields on the existing Person to avoid clobbering
+      // richer data already in Attio.
       const values = {};
       const hasName =
         existing.values?.name?.[0]?.full_name ||
         existing.values?.name?.[0]?.first_name;
       if (!hasName && fullName) {
-        values.name = [{ first_name, last_name }];
-      }
-      const hasOrg = existing.values?.organization?.[0]?.value;
-      if (!hasOrg && organization) {
-        values.organization = [{ value: organization }];
+        values.name = [{ first_name, last_name, full_name: fullName }];
       }
       if (Object.keys(values).length > 0) {
         await fetch(`${ATTIO_BASE}/objects/people/records/${existingId}`, {
@@ -185,8 +187,7 @@ async function findOrCreatePerson(apiKey, { email, fullName, organization }) {
       data: {
         values: {
           email_addresses: [{ email_address: email }],
-          name: [{ first_name, last_name }],
-          organization: [{ value: organization }],
+          name: [{ first_name, last_name, full_name: fullName }],
         },
       },
     }),
