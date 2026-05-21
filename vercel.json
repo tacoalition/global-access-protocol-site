@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/global-access-protocol/lite-paper", "destination": "/" },
+    { "source": "/global-access-protocol/lite-paper/:path*", "destination": "/:path*" }
+  ]
+}
