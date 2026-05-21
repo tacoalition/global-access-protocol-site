@@ -1,3 +1,5 @@
+const tacLogoWhite = `${import.meta.env.BASE_URL}tac-logo-white.svg`
+
 const primaryLinks = [
   { label: 'TAC Pulse', url: 'https://pulse.tacoalition.org/' },
   { label: 'Research Hub', url: 'https://research.tacoalition.org/' },
@@ -20,7 +22,7 @@ export default function Footer() {
           <div className="flex flex-col justify-between gap-8 md:gap-16 w-full md:w-auto order-2 md:order-1">
             <a href="https://tacoalition.org" className="block">
               <img
-                src="/tac-logo-white.svg"
+                src={tacLogoWhite}
                 alt="Tokenized Asset Coalition"
                 className="h-[47px] lg:h-[60px] w-auto"
               />

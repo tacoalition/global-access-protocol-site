@@ -10,6 +10,10 @@ import FloatingCTA from './components/FloatingCTA'
 import DriveAccessModal from './components/DriveAccessModal'
 import SubscribeModal from './components/SubscribeModal'
 
+const PUBLIC_BASE = import.meta.env.BASE_URL
+const dsiLogo = `${PUBLIC_BASE}DSI logo transparent dark mode.png`
+const tacLogo = `${PUBLIC_BASE}TAC logo.png`
+
 import HeroVisual from './components/visuals/HeroVisual'
 import MarketGap from './components/visuals/MarketGap'
 import Impasse from './components/visuals/Impasse'
@@ -229,11 +233,11 @@ function App() {
           </div>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
             <a href="https://digitalsecuritiesinitiative.xyz" target="_blank" rel="noopener noreferrer">
-              <img src="/DSI logo transparent dark mode.png" alt="Digital Securities Initiative" className="h-[48px]" />
+              <img src={dsiLogo} alt="Digital Securities Initiative" className="h-[48px]" />
             </a>
             <span className="text-border font-sans">&times;</span>
             <a href="https://tacoalition.org" target="_blank" rel="noopener noreferrer">
-              <img src="/TAC logo.png" alt="Tokenized Asset Coalition" className="h-[36px]" />
+              <img src={tacLogo} alt="Tokenized Asset Coalition" className="h-[36px]" />
             </a>
           </div>
         </div>

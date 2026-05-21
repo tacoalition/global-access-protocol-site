@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 
+const tacLogoWhite = `${import.meta.env.BASE_URL}tac-logo-white.svg`
+
 const navLinks = [
   { label: 'TAC Pulse', url: 'https://pulse.tacoalition.org/' },
   { label: 'Research Hub', url: 'https://research.tacoalition.org/' },
@@ -45,7 +47,7 @@ export default function StickyNav() {
           {/* Logo */}
           <a href="https://tacoalition.org" className="flex items-center">
             <img
-              src="/tac-logo-white.svg"
+              src={tacLogoWhite}
               alt="Tokenized Asset Coalition"
               className="h-[34px] md:h-[45px] w-auto object-contain"
             />
