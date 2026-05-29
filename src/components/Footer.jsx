@@ -1,16 +1,15 @@
 const tacLogoWhite = `${import.meta.env.BASE_URL}tac-logo-white.svg`
 
 const primaryLinks = [
-  { label: 'TAC Pulse', url: 'https://pulse.tacoalition.org/' },
-  { label: 'Research Hub', url: 'https://research.tacoalition.org/' },
-  { label: 'Membership', url: 'https://form.typeform.com/to/Vtp7qXAX' },
-  { label: 'About TAC', url: 'https://tacoalition.org/about' },
+  { label: 'Research', url: 'https://tacoalition.org/research' },
+  { label: 'Protocol', url: 'https://tacoalition.org/global-access-protocol' },
+  { label: 'Membership', url: 'https://tacoalition.org/membership' },
+  { label: 'About', url: 'https://tacoalition.org/about' },
 ]
 
 const socialLinks = [
-  { label: 'x.com', url: 'https://x.com/tacoalition' },
-  { label: 'LinkedIn', url: 'https://www.linkedin.com/company/tacoalition/' },
-  { label: 'Telegram', url: 'https://t.me/TACoalition' },
+  { label: 'X / Twitter', url: 'https://x.com/tacoalition' },
+  { label: 'LinkedIn', url: 'https://www.linkedin.com/company/tokenized-asset-coalition/' },
 ]
 
 export default function Footer() {
@@ -28,7 +27,9 @@ export default function Footer() {
               />
             </a>
             <p className="font-sans text-xs lg:text-sm leading-[19px] tracking-[-0.28px] opacity-50 max-w-[334px] lg:max-w-[478px]">
-              2026 &copy; Tokenized Asset Coalition, Inc. is a member funded non profit corporation
+              &copy; {new Date().getFullYear()} Tokenized Asset Coalition. A
+              coalition of the leaders building tokenization across technology,
+              business, and policy.
             </p>
           </div>
 
@@ -39,8 +40,6 @@ export default function Footer() {
                 <a
                   key={link.url}
                   href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="font-mono text-xs uppercase tracking-widest hover:text-accent-light transition-colors py-1.5"
                 >
                   {link.label}

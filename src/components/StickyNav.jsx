@@ -3,9 +3,9 @@ import { useState, useEffect, useRef } from 'react'
 const tacLogoWhite = `${import.meta.env.BASE_URL}tac-logo-white.svg`
 
 const navLinks = [
-  { label: 'TAC Pulse', url: 'https://pulse.tacoalition.org/' },
-  { label: 'Research Hub', url: 'https://research.tacoalition.org/' },
-  { label: 'Membership', url: 'https://form.typeform.com/to/Vtp7qXAX' },
+  { label: 'Research', url: 'https://tacoalition.org/research' },
+  { label: 'Protocol', url: 'https://tacoalition.org/global-access-protocol' },
+  { label: 'Membership', url: 'https://tacoalition.org/membership' },
   { label: 'About', url: 'https://tacoalition.org/about' },
 ]
 
@@ -49,41 +49,21 @@ export default function StickyNav() {
             <img
               src={tacLogoWhite}
               alt="Tokenized Asset Coalition"
-              className="h-[34px] md:h-[45px] w-auto object-contain"
+              className="h-[33.858px] md:h-[45px] w-auto object-contain"
             />
           </a>
 
-          {/* Nav Links */}
+          {/* Nav Links — all four, responsive, matching the main site nav */}
           <div className="flex items-center gap-4 md:gap-6">
-            {/* Mobile: first 3 links */}
-            <div className="flex items-center gap-4 md:hidden">
-              {navLinks.slice(0, 3).map((link) => (
-                <a
-                  key={link.url}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-mono text-[10px] leading-[12px] uppercase tracking-[0.8px] text-text hover:text-accent-light transition-colors whitespace-nowrap"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-
-            {/* Desktop: all links */}
-            <div className="hidden md:flex items-center gap-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.url}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-mono text-xs uppercase tracking-widest text-text hover:text-accent-light transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
+            {navLinks.map((link) => (
+              <a
+                key={link.url}
+                href={link.url}
+                className="font-mono text-[10px] md:text-xs leading-[12px] uppercase tracking-[0.8px] md:tracking-widest text-text hover:text-accent-light transition-colors whitespace-nowrap"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
         </div>
       </nav>
